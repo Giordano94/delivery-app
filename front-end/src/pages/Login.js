@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isValidation, setIsValidation] = useState(true);
 
   function disableValidation() {
@@ -33,25 +33,29 @@ function Login() {
         <input
           data-testid="common_login__input-email"
           type="text"
-          value={email}
-          onChange={handleEmail}
+          value={ email }
+          onChange={ handleEmail }
         />
         <input
           data-testid="common_login__input-password"
           type="password"
-          value={password}
-          onChange={handlePassword}
+          value={ password }
+          onChange={ handlePassword }
         />
         <button
           data-testid="common_login__button-login"
-          disabled={isValidation}
+          disabled={ isValidation }
           type="button"
-        ></button>
+        >
+          Login
+        </button>
         <button
           data-testid="common_login__button-register"
           type="button"
-        ></button>
-        <h3 data-testid="common_login__element-invalid-email" hidden></h3>
+        >
+          Registrar
+        </button>
+        <h3 data-testid="common_login__element-invalid-email" hidden>a</h3>
       </form>
     </div>
   );

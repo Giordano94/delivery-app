@@ -1,13 +1,18 @@
 const crypto = require('crypto');
-const User = require('../../database/models');
+const User = require('../../database/models/user.model');
 
 const login = async (body) => {
-const { email, password } = body;
-const hashedPassword = crypto.createHash('md5').update(password).digest('hex');
-const result = await User.findOne({ where: { email, password: hashedPassword } });
-if (!result) return { type: 'error', message: 'User not found' };
-const { dataValues } = result;
-return { type: null, message: dataValues };
+  const { email, password } = body;
+  const hashedPassword = crypto
+    .createHash('md5')
+    .update(password)
+    .digest('hex');
+  const result = await User.findOne({
+    where: { email, password: hashedPassword },
+  });
+  if (!result) return { type: 'error', message: 'User not found' };
+  const { dataValues } = result;
+  return { type: null, message: dataValues };
 };
 
 module.exports = login;

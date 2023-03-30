@@ -1,5 +1,5 @@
-const User = require('../../database/models');
 const crypto = require('crypto');
+const User = require('../../database/models');
 
 const login = async (body) => {
 const { email, password } = body;

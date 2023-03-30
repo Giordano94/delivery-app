@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+// import PropTypes from 'prop-types';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -61,8 +61,8 @@ function Login() {
   );
 }
 
-Login.propTypes = {
+/* Login.propTypes = {
   history: PropTypes.shape(),
-}.isRequired;
+}.isRequired; */
 
 export default Login;

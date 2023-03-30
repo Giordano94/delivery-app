@@ -7,7 +7,7 @@ function Login() {
   const [isValidation, setIsValidation] = useState(true);
   function disableValidation() {
     const stringEmail = /\S+@\S+\.\S+/;
-    const limitator = 6;
+    const limitator = 5;
     const validate = stringEmail.test(email);
     const condicion = password.length >= limitator;
     const validation = !validate || !condicion;

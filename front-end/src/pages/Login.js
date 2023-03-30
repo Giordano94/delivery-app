@@ -5,27 +5,22 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValidation, setIsValidation] = useState(true);
-
   function disableValidation() {
     const stringEmail = /\S+@\S+\.\S+/;
-    const limitator = 6;
+    const limitator = 5;
     const validate = stringEmail.test(email);
     const condicion = password.length >= limitator;
-
     const validation = !validate || !condicion;
     setIsValidation(validation);
   }
-
   function handleEmail({ target: { value } }) {
     setEmail(value);
     disableValidation();
   }
-
   function handlePassword({ target: { value } }) {
     setPassword(value);
     disableValidation();
   }
-
   return (
     <div>
       <h1>Login</h1>
@@ -49,13 +44,12 @@ function Login() {
         >
           Login
         </button>
-        <button
-          data-testid="common_login__button-register"
-          type="button"
-        >
+        <button data-testid="common_login__button-register" type="button">
           Registrar
         </button>
-        <h3 data-testid="common_login__element-invalid-email" hidden>a</h3>
+        <h3 data-testid="common_login__element-invalid-email" hidden>
+          a
+        </h3>
       </form>
     </div>
   );

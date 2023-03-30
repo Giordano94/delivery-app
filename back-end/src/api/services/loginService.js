@@ -1,17 +1,16 @@
-/* import User */ // ver nome da model depois para alterar
+const User = require('../../database/models');
 const crypto = require('crypto');
 
 const login = async (body) => {
 const { email, password } = body;
-const hashedPassword = crypto.createHash('md5').update(password).digest('hex')
+const hashedPassword = crypto.createHash('md5').update(password).digest('hex');
 const result = await User.findOne({ where: { email, password: hashedPassword } });
-if(!result) return { type: 'error', message: 'User not found' }
+if (!result) return { type: 'error', message: 'User not found' };
 const { dataValues } = result;
 return { type: null, message: dataValues };
-}
+};
 
 module.exports = login;
-
 
 /* 8 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro com dados mal formatados
 Observações técnicas

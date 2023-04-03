@@ -1,62 +1,85 @@
-import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { reqLogin, reqToken } from '../services/apiRequest';
 
 function Login() {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isValidation, setIsValidation] = useState(true);
-  function disableValidation() {
-    const stringEmail = /\S+@\S+\.\S+/;
-    const limitator = 5;
-    const validate = stringEmail.test(email);
-    const condicion = password.length >= limitator;
-    const validation = !validate || !condicion;
-    setIsValidation(validation);
-  }
-  function handleEmail({ target: { value } }) {
-    setEmail(value);
-    disableValidation();
-  }
-  function handlePassword({ target: { value } }) {
-    setPassword(value);
-    disableValidation();
-  }
+  const [isValidation, setIsValidation] = useState(false);
+
+  const commonLogin = 'common_login__';
+  const inputEmail = 'input-email';
+  const inputPassword = 'input-password';
+  const buttonLogin = 'button-login';
+  const buttonRegister = 'button-register';
+  const elementInvalidEmail = 'element-invalid-email';
+
+  const limitator = 6;
+  let stringEmail = email.match(/\S+@\S+\.\S+/i);
+
+  useEffect(() => {
+    history.push('/login');
+  }, []);
+
+  useEffect(() => {
+    stringEmail = email.match(/\S+@\S+\.\S+/i);
+  }, [email]);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { token } = await reqLogin('/login', { email, password });
+
+      reqToken(token);
+
+      localStorage.setItem('token', token);
+
+      history.push('/customer/products');
+    } catch (error) {
+      console.log(error);
+      setIsValidation(true);
+    }
+  };
   return (
     <div>
-      <h1>Login</h1>
       <form>
         <input
-          data-testid="common_login__input-email"
-          type="text"
+          type="email"
+          data-testid={ `${commonLogin}${inputEmail}` }
           value={ email }
-          onChange={ handleEmail }
+          onChange={ (e) => setEmail(e.target.value) }
         />
         <input
-          data-testid="common_login__input-password"
           type="password"
+          data-testid={ `${commonLogin}${inputPassword}` }
           value={ password }
-          onChange={ handlePassword }
+          onChange={ (e) => setPassword(e.target.value) }
         />
         <button
-          data-testid="common_login__button-login"
-          disabled={ isValidation }
           type="button"
+          data-testid={ `${commonLogin}${buttonLogin}` }
+          disabled={ !(stringEmail && password.length >= limitator) }
+          onClick={ (e) => handleLogin(e) }
         >
-          Login
+          LOGIN
         </button>
-        <button data-testid="common_login__button-register" type="button">
-          Registrar
+        <button
+          type="button"
+          data-testid={ `${commonLogin}${buttonRegister}` }
+        >
+          I dont have a record
         </button>
-        <h3 data-testid="common_login__element-invalid-email" hidden>
-          a
-        </h3>
       </form>
+      <p
+        data-testid={ `${commonLogin}${elementInvalidEmail}` }
+        style={ { visibility: isValidation ? 'visible' : 'hidden' } }
+      >
+        Error message
+      </p>
     </div>
   );
 }
-
-/* Login.propTypes = {
-  history: PropTypes.shape(),
-}.isRequired; */
 
 export default Login;

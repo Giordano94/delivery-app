@@ -1,21 +1,23 @@
-const crypto = require('crypto');
-const User = require('../../database/models/user.model');
+const md5 = require('md5');
+const { Users } = require('../../database/models');
+const { JwtToken } = require('../../utils/JwtToken');
 
-const login = async (body) => {
-  const { email, password } = body;
-  const hashedPassword = crypto
-    .createHash('md5')
-    .update(password)
-    .digest('hex');
-  const result = await User.findOne({
-    where: { email, password: hashedPassword },
-  });
-  if (!result) return { type: 'error', message: 'User not found' };
-  const { dataValues } = result;
-  return { type: null, message: dataValues };
+const login = async (email, password) => {
+  const loginValidate = await Users.findOne({ where: { email } });
+  if (!loginValidate || loginValidate.password !== md5(password)) {
+    return null;
+  }
+  const token = JwtToken(loginValidate);
+
+  return {
+    name: loginValidate.name,
+    email: loginValidate.email,
+    role: loginValidate.role,
+    token,
+  };
 };
 
-module.exports = login;
+module.exports = { login };
 
 /* 8 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro com dados mal formatados
 Observações técnicas

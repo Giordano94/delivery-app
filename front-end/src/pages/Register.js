@@ -9,6 +9,7 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValidation, setIsValidation] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   function disableValidation() {
     const stringEmail = /\S+@\S+\.\S+/;
@@ -54,12 +55,12 @@ function Register() {
       console.log('User', user);
       reqToken(userData);
 
-      localStorage.setItem('user', user);
+      localStorage.setItem('user', JSON.stringify(user.message));
 
       history.push('/customer/products');
     } catch (error) {
       console.log(error);
-      setIsValidation(true);
+      setErrorMessage(true);
     }
   };
 
@@ -92,7 +93,10 @@ function Register() {
         >
           Cadastrar
         </button>
-        <h3 data-testid="common_register__element-invalid_register" hidden>
+        <h3
+          data-testid="common_register__element-invalid_register"
+          style={ { visibility: errorMessage ? 'visible' : 'hidden' } }
+        >
           element-invalid
         </h3>
       </form>

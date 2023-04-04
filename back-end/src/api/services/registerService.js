@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const crypto = require('crypto');
 const { Users } = require('../../database/models');
+const { JwtToken } = require('../../utils/JwtToken');
 
 const registerUser = async (name, email, password) => {
   const userExists = await Users.findOne({
@@ -15,13 +16,18 @@ const registerUser = async (name, email, password) => {
 
   const hashedPassword = crypto.createHash('md5').update(password).digest('hex');
 
-  await Users.create({
+const user = await Users.create({
     name,
     email,
     password: hashedPassword,
     role: 'customer',
   });
-  return { type: null, message: 'Successfully registered user' };
+
+const token = JwtToken(user);
+
+const userData = { name, email, role: 'customer', token };
+
+  return { type: null, message: userData };
 };
 
 module.exports = { registerUser };

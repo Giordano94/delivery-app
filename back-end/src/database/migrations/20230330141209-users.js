@@ -1,8 +1,7 @@
-"use strict";
-
 module.exports = {
+  // eslint-disable-next-line max-lines-per-function
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("users", {
+    await queryInterface.createTable('users', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,

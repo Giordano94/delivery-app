@@ -24,7 +24,11 @@ function ProductCard({ product }) {
       <h1 data-testid={ `customer_products__element-card-price-${id}` }>
         {price}
       </h1>
-      <img src={ urlImage } alt={ name } />
+      <img
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
+        src={ urlImage }
+        alt={ name }
+      />
       <button
         data-testid={ `customer_products__button-card-add-item-${id}` }
         type="button"
@@ -33,9 +37,11 @@ function ProductCard({ product }) {
       >
         +
       </button>
-      <h1 data-testid={ `customer_products__input-card-quantity-${id}` }>
-        {quantity}
-      </h1>
+      <input
+        type="number"
+        value={ quantity }
+        data-testid={ `customer_products__input-card-quantity-${id}` }
+      />
       <button
         data-testid={ `customer_products__button-card-rm-item-${id}` }
         type="button"

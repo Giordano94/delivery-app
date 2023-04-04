@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { reqLogin, reqToken } from '../services/apiRequest';
 
 function Login() {
@@ -57,6 +57,7 @@ function Login() {
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
         />
+
         <button
           type="button"
           data-testid={ `${commonLogin}${buttonLogin}` }
@@ -65,12 +66,11 @@ function Login() {
         >
           LOGIN
         </button>
-        <button
-          type="button"
-          data-testid={ `${commonLogin}${buttonRegister}` }
-        >
-          I dont have a record
-        </button>
+        <Link to="/register">
+          <button type="button" data-testid={ `${commonLogin}${buttonRegister}` }>
+            I dont have a record
+          </button>
+        </Link>
       </form>
       <p
         data-testid={ `${commonLogin}${elementInvalidEmail}` }

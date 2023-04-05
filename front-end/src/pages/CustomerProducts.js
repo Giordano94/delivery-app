@@ -19,10 +19,11 @@ function CustomerProducts() {
   return (
     <div>
       <Header />
-      <div>
+      <div className="products">
         {products
           .map((product) => <ProductCard key={ product.id } product={ product } />)}
       </div>
+      <h1>{`Valor Total: ${valorTotal}`}</h1>
     </div>
   );
 }

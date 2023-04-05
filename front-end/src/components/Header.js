@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 function Header({ showProdutos = true, showMeusPedidos = true, showName = true }) {
+  const history = useHistory();
+  const [nome, setNome] = useState('');
+
+  useEffect(() => {
+    const { name } = JSON.parse(localStorage.getItem('user'));
+    setNome(name);
+  });
+
+  const logout = () => {
+    localStorage.clear();
+    history.push('/login');
+  };
+
   return (
     <div>
       {((showProdutos) && (
@@ -25,12 +39,13 @@ function Header({ showProdutos = true, showMeusPedidos = true, showName = true }
           data-testid="customer_products__element-navbar-user-full-name"
           type="button"
         >
-          Name
+          { nome }
         </button>
       ))}
       <button
         data-testid="customer_products__element-navbar-link-logout"
         type="button"
+        onClick={ logout }
       >
         Sair
       </button>

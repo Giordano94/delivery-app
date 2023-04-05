@@ -34,7 +34,7 @@ function Login() {
 
       reqToken(token);
 
-      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(token));
 
       history.push('/customer/products');
     } catch (error) {

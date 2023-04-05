@@ -38,7 +38,6 @@ function Register() {
   }
 
   function handleSubmit() {
-    //  console.log(`Name: ${name}, Email: ${email}, Password: ${password}`);
     history.push('/login');
   }
 

@@ -43,23 +43,23 @@ export default function TableCheckout() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product, index) => (
+          {products.map(({name, price, quantity}, index) => (
             <tr key={ index }>
               <td data-testid={ `${dataIndex}${index}` }>{index + 1}</td>
-              <td data-testid={ `${testName}${index}` }>{product.name}</td>
+              <td data-testid={ `${testName}${index}` }>{name}</td>
               <td data-testid={ `${testQunatity}${index}` }>
-                {product.quantity}
+                {quantity}
               </td>
               <td data-testid={ `${testPrice}${index}` }>
-                {addComma(product.price)}
+                {addComma(price)}
               </td>
               <td data-testid={ `${testSubTotal}${index}` }>
-                {addComma((product.quantity * product.price).toFixed(2))}
+                {addComma((quantity * price).toFixed(2))}
               </td>
               <td>
                 <button
                   data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-                  onClick={ () => removeItem(product.name, product.price, product.quantity) }
+                  onClick={ () => removeItem(name, price, quantity) }
                   type="button"
                 >
                   Remover

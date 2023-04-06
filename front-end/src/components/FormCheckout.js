@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 export default function FormCheckout() {
-  const [endereco, setEndereco] = useState('');
-  const [numero, setNumero] = useState('');
+  const [endereco] = useState('');
+  const [numero] = useState('');
 
   return (
     <section>

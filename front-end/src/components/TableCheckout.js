@@ -68,9 +68,7 @@ export default function TableCheckout() {
             </tr>
           ))}
           <tr data-testid="customer_checkout__element-order-total-price">
-            Total:
-            {' '}
-            {valorTotal}
+            {addComma(valorTotal)}
           </tr>
         </tbody>
       </table>

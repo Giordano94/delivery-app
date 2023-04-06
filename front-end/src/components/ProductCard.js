@@ -14,14 +14,11 @@ function ProductCard({ product }) {
       quantity,
       price,
     };
-    if (quantity >= 0) {
-      if (products.length === 0) {
-        setProducts([newProduct]);
-      }
-      if (products.filter((p) => p.name === newProduct.name)) {
-        const oldArray = products.filter((p) => p.name !== newProduct.name);
-        setProducts([...oldArray, newProduct]);
-      }
+
+    if (products.filter((p) => p.name === newProduct.name)) {
+      const newArray = products.filter((p) => p.quantity !== 0);
+      const oldArray = newArray.filter((p) => p.name !== newProduct.name);
+      setProducts([...oldArray, newProduct]);
     }
   }, [quantity]);
 

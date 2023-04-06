@@ -4,10 +4,13 @@ import ProductContext from './Context';
 
 export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
+  const [valorTotal, setValorTotal] = useState('');
   const context = useMemo(() => ({
     products,
     setProducts,
-  }), [products, setProducts]);
+    valorTotal,
+    setValorTotal,
+  }), [products, setProducts, setValorTotal, valorTotal]);
 
   return (
     <ProductContext.Provider value={ context }>{ children }</ProductContext.Provider>

@@ -43,7 +43,7 @@ export default function TableCheckout() {
           </tr>
         </thead>
         <tbody>
-          {products.map(({name, price, quantity}, index) => (
+          {products.map(({ name, price, quantity }, index) => (
             <tr key={ index }>
               <td data-testid={ `${dataIndex}${index}` }>{index + 1}</td>
               <td data-testid={ `${testName}${index}` }>{name}</td>

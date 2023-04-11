@@ -23,7 +23,7 @@ const Sale = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
       },
       status: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(50), 
       },
     },
     {
@@ -44,7 +44,7 @@ const Sale = (sequelize, DataTypes) => {
     });
     Sales.hasMany(model.SalesProducts, {
       as: 'Products',
-      foreignKey: 'salesId',
+      foreignKey: 'saleId',
     });
   };
 

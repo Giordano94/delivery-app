@@ -1,7 +1,7 @@
 const { Sales } = require('../../database/models');
 
-const createSale = async (sale, auth) => {
-  const newSale = await Sales.create(sale, auth);
+const createSale = async (sale) => {
+  const newSale = await Sales.create(sale);
 
   return { type: null, message: newSale };
 };

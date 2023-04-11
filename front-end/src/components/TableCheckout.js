@@ -6,13 +6,12 @@ export default function TableCheckout() {
   const dataIndex = 'customer_checkout__element-order-table-item-number-';
   const testSubTotal = 'customer_checkout__element-order-table-sub-total-';
   const testPrice = 'customer_checkout__element-order-table-unit-price-';
-  const testQunatity = 'customer_checkout__element-order-table-quantity-';
+  const testQuantity = 'customer_checkout__element-order-table-quantity-';
   const testName = 'customer_checkout__element-order-table-name-';
 
   const removeItem = (name, price, quantity) => {
     const newProducts = products.filter((product) => product.name !== name);
     setProducts(newProducts);
-    // const oldValue = valorTotal;
     const newValue = Number(valorTotal.replace(',', '.'))
       - Number(price.replace(',', '.')) * Number(quantity);
     let str = newValue.toFixed(2);
@@ -47,7 +46,7 @@ export default function TableCheckout() {
             <tr key={ index }>
               <td data-testid={ `${dataIndex}${index}` }>{index + 1}</td>
               <td data-testid={ `${testName}${index}` }>{name}</td>
-              <td data-testid={ `${testQunatity}${index}` }>
+              <td data-testid={ `${testQuantity}${index}` }>
                 {quantity}
               </td>
               <td data-testid={ `${testPrice}${index}` }>

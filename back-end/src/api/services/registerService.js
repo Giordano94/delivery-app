@@ -5,7 +5,6 @@ const { JwtToken } = require('../../utils/JwtToken');
 
 const findByToken = async ({ data: { name, email, role } }) => {
   const user = Users.findOne({ where: { name, email, role } });
-  console.log('userService', user);
   return user;
 };
 

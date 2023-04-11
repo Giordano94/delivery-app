@@ -1,27 +1,26 @@
-"use strict";
-
 module.exports = {
+  // eslint-disable-next-line max-lines-per-function
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("sales_products", {
-      salesId: {
+    await queryInterface.createTable('sales_products', {
+      saleId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "sales",
-          key: "id",
+          model: 'sales',
+          key: 'id',
         },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         allowNull: false,
-        field: 'sales_id',
+        field: 'sale_id',
       },
       productId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "products",
-          key: "id",
+          model: 'products',
+          key: 'id',
         },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         allowNull: false,
         field: 'product_id',
       },

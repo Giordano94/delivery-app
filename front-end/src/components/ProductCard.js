@@ -4,7 +4,12 @@ import ProductContext from '../context/Context';
 
 function ProductCard({ product }) {
   const { id, name, price, urlImage } = product;
-  const { products, setProducts } = useContext(ProductContext);
+  const {
+    products,
+    setProducts,
+    productAndQuantity,
+    setProductAndQuantity,
+  } = useContext(ProductContext);
   const [quantity, setQuantity] = useState(0);
   const newPrice = price.replace('.', ',');
 
@@ -14,14 +19,17 @@ function ProductCard({ product }) {
       quantity,
       price,
     };
-    if (quantity >= 0) {
-      if (products.length === 0) {
-        setProducts([newProduct]);
-      }
-      if (products.filter((p) => p.name === newProduct.name)) {
-        const oldArray = products.filter((p) => p.name !== newProduct.name);
-        setProducts([...oldArray, newProduct]);
-      }
+
+    if (products.filter((p) => p.name === newProduct.name)) {
+      const newArray = products.filter((p) => p.quantity !== 0);
+      const oldArray = newArray.filter((p) => p.name !== newProduct.name);
+      setProducts([...oldArray, newProduct]);
+    }
+    const filterArray = productAndQuantity.filter((p) => p.id !== id);
+    if (filterArray && quantity > 0) {
+      const newObj = { id, quantity };
+      filterArray.push(newObj);
+      setProductAndQuantity([...filterArray]);
     }
   }, [quantity]);
 

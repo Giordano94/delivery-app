@@ -1,9 +1,14 @@
 import React from 'react';
+import Header from '../components/Header';
+import TableCheckout from '../components/TableCheckout';
+import FormCheckout from '../components/FormCheckout';
 
 export default function CustomerCheckout() {
   return (
     <div>
-      <h1>Checkout</h1>
+      <Header />
+      <TableCheckout />
+      <FormCheckout />
     </div>
   );
 }

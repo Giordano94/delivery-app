@@ -18,9 +18,25 @@ export const reqLogin = async (endpoint, body) => {
   return data;
 };
 
+export const postSales = async (endpoint, body) => {
+  const { data } = await api
+    .post(endpoint, body, {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: body.token,
+      },
+    });
+  console.log(body.token);
+  return data;
+};
+
 export const postRegister = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);
-  console.log(data);
+  return data;
+};
+
+export const reqSellers = async (endpoint) => {
+  const { data } = await api.get(endpoint);
   return data;
 };
 

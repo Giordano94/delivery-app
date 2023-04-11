@@ -4,13 +4,32 @@ import ProductContext from './Context';
 
 export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
-  const context = useMemo(() => ({
-    products,
-    setProducts,
-  }), [products, setProducts]);
+  const [valorTotal, setValorTotal] = useState('');
+  const [productAndQuantity, setProductAndQuantity] = useState([]);
+
+  const context = useMemo(
+    () => ({
+      products,
+      setProducts,
+      valorTotal,
+      setValorTotal,
+      productAndQuantity,
+      setProductAndQuantity,
+    }),
+    [
+      products,
+      setProducts,
+      setValorTotal,
+      valorTotal,
+      productAndQuantity,
+      setProductAndQuantity,
+    ],
+  );
 
   return (
-    <ProductContext.Provider value={ context }>{ children }</ProductContext.Provider>
+    <ProductContext.Provider value={ context }>
+      {children}
+    </ProductContext.Provider>
   );
 }
 

@@ -48,7 +48,6 @@ export default function FormCheckout() {
       };
       await postRegister('/saleProduct', saleProductObj);
     });
-
     history.push('/customer/orders');
   };
 

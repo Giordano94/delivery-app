@@ -6,7 +6,7 @@ export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [valorTotal, setValorTotal] = useState('');
   const [productAndQuantity, setProductAndQuantity] = useState([]);
-
+  const [orderGlobal, setOrderGlobal] = useState({});
   const context = useMemo(
     () => ({
       products,
@@ -15,6 +15,8 @@ export default function ProductProvider({ children }) {
       setValorTotal,
       productAndQuantity,
       setProductAndQuantity,
+      orderGlobal,
+      setOrderGlobal,
     }),
     [
       products,
@@ -23,6 +25,8 @@ export default function ProductProvider({ children }) {
       valorTotal,
       productAndQuantity,
       setProductAndQuantity,
+      orderGlobal,
+      setOrderGlobal,
     ],
   );
 

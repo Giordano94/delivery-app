@@ -9,14 +9,10 @@ export default function CustomerOrders() {
   useEffect(() => {
     const req = async () => {
       const { email } = JSON.parse(localStorage.getItem('user'));
-      console.log('email', email);
       const user = await reqLogin('/user', { email });
-      console.log('user', user);
       const { id } = user[0];
-      console.log(id);
       const pedidosArray = await reqOrders(`/orders/${id}`);
       setPedidos(pedidosArray);
-      console.log('pedidos', pedidos);
     };
     req();
   }, []);

@@ -6,7 +6,7 @@ import FormCheckout from '../components/FormCheckout';
 export default function CustomerCheckout() {
   return (
     <div>
-      <Header />
+      <Header showGerenciar={ false } />
       <TableCheckout />
       <FormCheckout />
     </div>

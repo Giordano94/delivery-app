@@ -7,6 +7,11 @@ import CustomerProducts from './pages/CustomerProducts';
 import ProductProvider from './context/Provider';
 import CustomerCheckout from './pages/CustomerCheckout';
 
+// Fluxo Admin
+import AdminManage from './pages/NavAdmin';
+import ProviderAuth from './hooks/authoProvider';
+import ProviderAdmin from './hooks/adminProvider';
+
 function App() {
   return (
     <Switch>
@@ -17,11 +22,17 @@ function App() {
       />
       <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ Register } />
-      <ProductProvider>
-        <Route exact path="/customer/products" component={ CustomerProducts } />
-        <Route exact path="/customer/checkout" component={ CustomerCheckout } />
-      </ProductProvider>
+      <ProviderAuth>
+        <ProductProvider>
+          <ProviderAdmin>
+            <Route exact path="/customer/products" component={ CustomerProducts } />
+            <Route exact path="/customer/checkout" component={ CustomerCheckout } />
+            <Route exact path="/admin/manage" component={ AdminManage } />
+          </ProviderAdmin>
+        </ProductProvider>
+      </ProviderAuth>
     </Switch>
   );
 }
+
 export default App;

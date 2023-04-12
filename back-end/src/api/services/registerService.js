@@ -35,4 +35,20 @@ const registerUser = async (name, email, password) => {
   return { type: null, message: userData };
 };
 
-module.exports = { registerUser, findByToken };
+// Listar os usuários
+const findUsers = async () => {
+  const find = await Users.findAll({ 
+    where: { role: { [Op.ne]: 'administrator' } },
+    attributes: { exclude: ['password'] },
+  });
+
+  return { type: 200, message: find };
+};
+
+// Deletar usuários BÔNUS !
+const deleteUser = async (id) => {
+  const destroy = await Users.destroy({ where: { id } });
+  return { type: 204, message: destroy };
+};
+
+module.exports = { registerUser, findByToken, findUsers, deleteUser };

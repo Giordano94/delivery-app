@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-function Header({ showProdutos = true, showMeusPedidos = true, showName = true }) {
+function Header({ showProdutos = true, showGerenciar = true }) {
   const history = useHistory();
   const [nome, setNome] = useState('');
+  let linkOrders = '';
 
   useEffect(() => {
     const { name } = JSON.parse(localStorage.getItem('user'));
     setNome(name);
+
+    if (showGerenciar) linkOrders = 'GERENCIAR USUARIOS';
+    if (showProdutos) linkOrders = 'MEUS PEDIDOS';
   });
 
   const logout = () => {
@@ -26,22 +30,20 @@ function Header({ showProdutos = true, showMeusPedidos = true, showName = true }
           PRODUTOS
         </button>
       ))}
-      {((showMeusPedidos) && (
-        <button
-          data-testid="customer_products__element-navbar-link-orders"
-          type="button"
-        >
-          MEUS PEDIDOS
-        </button>
-      ))}
-      {((showName) && (
-        <button
-          data-testid="customer_products__element-navbar-user-full-name"
-          type="button"
-        >
-          { nome }
-        </button>
-      ))}
+
+      <button
+        data-testid="customer_products__element-navbar-link-orders"
+        type="button"
+      >
+        { linkOrders }
+      </button>
+      <button
+        data-testid="customer_products__element-navbar-user-full-name"
+        type="button"
+      >
+        { nome }
+      </button>
+
       <button
         data-testid="customer_products__element-navbar-link-logout"
         type="button"

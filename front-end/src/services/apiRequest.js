@@ -40,4 +40,9 @@ export const reqSellers = async (endpoint) => {
   return data;
 };
 
+export const reqOrders = async (endpoint) => {
+  const { data } = await api.get(endpoint);
+  return data;
+};
+
 export default api;

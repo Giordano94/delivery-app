@@ -21,7 +21,7 @@ function App() {
       <ProductProvider>
         <Route exact path="/customer/products" component={ CustomerProducts } />
         <Route exact path="/customer/checkout" component={ CustomerCheckout } />
-        <Route exact path="/customer/orders/:id" component={ CustomerOrder } />
+        <Route exact path="/customer/orders/" component={ CustomerOrder } />
       </ProductProvider>
     </Switch>
   );

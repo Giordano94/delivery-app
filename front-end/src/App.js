@@ -8,7 +8,6 @@ import ProductProvider from './context/Provider';
 import CustomerCheckout from './pages/CustomerCheckout';
 
 // Fluxo Admin
-import AdminManage from './pages/NavAdmin';
 import ProviderAuth from './hooks/authoProvider';
 import ProviderAdmin from './hooks/adminProvider';
 

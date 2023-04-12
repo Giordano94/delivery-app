@@ -1,19 +1,19 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { UseCallback, UseMemo, UseState } from 'react';
 import PropTypes from 'prop-types';
 import AdminContext from './adminContext';
 import api from '../utils/api';
 import authentication from '../utils/authentication';
 
 export default function adminProvider({ children }) {
-  const [dataUsers, setDataUsers] = useState([]);
+  const [dataUsers, setDataUsers] = UseState([]);
 
-  const getUsers = useCallback(async () => {
+  const getUsers = UseCallback(async () => {
     authentication();
     const { data } = await api.get('/users');
     setDataUsers(data);
   }, []);
 
-  const contextValue = useMemo(() => ({
+  const contextValue = UseMemo(() => ({
     dataUsers,
     setDataUsers,
     getUsers,

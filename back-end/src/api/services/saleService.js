@@ -6,6 +6,13 @@ const createSale = async (sale) => {
   return { type: null, message: newSale };
 };
 
+const getOrderById = async (userId) => {
+  const sale = await Sales.findAll({ where: { userId } });
+
+  if (!sale) return { type: 'error', message: 'Sale not found' };
+  return { type: null, message: sale };
+};
+
 const getSaleById = async (id) => {
   const sale = await Sales.findByPk(id);
 
@@ -13,4 +20,4 @@ const getSaleById = async (id) => {
   return { type: null, message: sale };
 };
 
-module.exports = { createSale, getSaleById };
+module.exports = { createSale, getSaleById, getOrderById };

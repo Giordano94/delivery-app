@@ -20,4 +20,13 @@ const getUserByEmail = async (request, response) => {
   return response.status(200).json(message);
 };
 
-module.exports = { getSellers, getUserByEmail };
+const getUserById = async (request, response) => {
+  const { id } = request.params;
+
+  const { type, message } = await userService.getUserById(id);
+  if (type) return response.status(404).json(message);
+
+  return response.status(200).json(message);
+};
+
+module.exports = { getSellers, getUserByEmail, getUserById };

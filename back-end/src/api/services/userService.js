@@ -16,4 +16,10 @@ const getUserByEmail = async (email) => {
   return { type: null, message: userByEmail };
 };
 
-module.exports = { getSellers, getUserByEmail };
+const getUserById = async (id) => {
+  const user = await Users.findByPk(id);
+
+  if (!user) return { type: 'error', message: 'User not found' };
+  return { type: null, message: user };
+};
+module.exports = { getSellers, getUserByEmail, getUserById };

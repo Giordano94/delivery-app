@@ -1,21 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import moment from 'moment/moment';
+import { postRegister } from '../services/apiRequest';
 import Header from '../components/Header';
-import ProductContext from '../context/Context';
 
 export default function CustomerOrderById() {
-  const { orderGlobal } = useContext(ProductContext);
-  const { id, status, saleDate, totalPrice } = orderGlobal;
-  console.log('totalPrice', totalPrice);
-  console.log('id', id);
-  console.log('status', status);
-  console.log('orderGlobal', orderGlobal);
+  const [orders, setOrders] = useState([]);
+  console.log('orders', orders);
+  const history = useHistory();
+  // não está acessando o useEffect
+  useEffect(() => {
+    const req = async () => {
+      const ordersReq = await postRegister('/orders', { userId: 3 });
+      setOrders(ordersReq);
+    };
+    req();
+  }, []);
+  console.log('ordersAqui', orders);
 
-  const dateHour = new Date(saleDate);
-  const number2 = -2;
-  const day = dateHour.getDate().toString().padStart(2, '0');
-  const month = (dateHour.getMonth() + 1).toString().padStart(2, '0');
-  const year = dateHour.getFullYear().toString().substr(number2);
-  const formatDate = `${day}/${month}/${year}`;
+  const buttonDetails = ((id) => {
+    history.push(`customer/orders/${id}`);
+  });
 
   return (
     <div>

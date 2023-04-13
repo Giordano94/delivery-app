@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import ProductContext from '../context/Context';
-import { reqSellers, postRegister, reqData, postSales } from '../services/apiRequest';
+import {
+  reqSellers,
+  postRegister,
+  reqData,
+  postSales,
+} from '../services/apiRequest';
 
 export default function FormCheckout() {
   const { valorTotal, productAndQuantity } = useContext(ProductContext);
@@ -37,7 +42,7 @@ export default function FormCheckout() {
     };
 
     const postSeller = await postSales('/sale', finalData);
-    console.log(postSeller);
+
     const { id } = postSeller;
 
     productAndQuantity.map(async (p) => {
@@ -48,7 +53,7 @@ export default function FormCheckout() {
       };
       await postRegister('/saleProduct', saleProductObj);
     });
-    history.push('/customer/orders');
+    history.push(`/customer/orders/${id}`);
   };
 
   return (

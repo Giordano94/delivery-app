@@ -4,5 +4,13 @@ const createSale = async (request, response) => {
   const { message } = await saleService.createSale(request.body);
   return response.status(201).json(message);
 };
+const getSaleById = async (request, response) => {
+  const { id } = request.params;
+  
+  const { type, message } = await saleService.getSaleById(id);
+  if (type) return response.status(404).json(message);
 
-module.exports = { createSale };
+  return response.status(200).json(message);
+};
+
+module.exports = { createSale, getSaleById };

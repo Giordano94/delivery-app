@@ -6,4 +6,11 @@ const createSale = async (sale) => {
   return { type: null, message: newSale };
 };
 
-module.exports = { createSale };
+const getSaleById = async (id) => {
+  const sale = await Sales.findByPk(id);
+
+  if (!sale) return { type: 'error', message: 'Sale not found' };
+  return { type: null, message: sale };
+};
+
+module.exports = { createSale, getSaleById };

@@ -6,6 +6,7 @@ const productsRoute = require('./routes/productsRoute');
 const userRoute = require('./routes/userRoute');
 const saleRoute = require('./routes/saleRoute');
 const saleProductRoute = require('./routes/salesProduct');
+const orderRoute = require('./routes/orderRoute');
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ app.use('/products', productsRoute);
 app.use('/user', userRoute);
 app.use('/sale', saleRoute);
 app.use('/saleProduct', saleProductRoute);
+app.use('/orders', orderRoute);
 
 app.use('/images', express.static('public'));
 

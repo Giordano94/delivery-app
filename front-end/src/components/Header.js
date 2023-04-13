@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-function Header({ showProdutos = true, showMeusPedidos = true, showName = true }) {
+function Header({
+  showProdutos = true,
+  showMeusPedidos = true,
+  showName = true,
+}) {
   const history = useHistory();
   const [nome, setNome] = useState('');
 
@@ -18,30 +22,32 @@ function Header({ showProdutos = true, showMeusPedidos = true, showName = true }
 
   return (
     <div>
-      {((showProdutos) && (
+      {showProdutos && (
         <button
           data-testid="customer_products__element-navbar-link-products"
           type="button"
         >
           PRODUTOS
         </button>
-      ))}
-      {((showMeusPedidos) && (
-        <button
-          data-testid="customer_products__element-navbar-link-orders"
-          type="button"
-        >
-          MEUS PEDIDOS
-        </button>
-      ))}
-      {((showName) && (
+      )}
+      {showMeusPedidos && (
+        <Link to="/customer/orders">
+          <button
+            data-testid="customer_products__element-navbar-link-orders"
+            type="button"
+          >
+            MEUS PEDIDOS
+          </button>
+        </Link>
+      )}
+      {showName && (
         <button
           data-testid="customer_products__element-navbar-user-full-name"
           type="button"
         >
-          { nome }
+          {nome}
         </button>
-      ))}
+      )}
       <button
         data-testid="customer_products__element-navbar-link-logout"
         type="button"

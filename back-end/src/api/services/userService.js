@@ -8,4 +8,18 @@ const getSellers = async (role) => {
   return { type: null, message: user };
 };
 
-module.exports = { getSellers };
+const getUserByEmail = async (email) => {
+  const userByEmail = await Users.findAll({ where: { email } });
+
+  if (!userByEmail) return { type: 'error', message: 'Email not found ' };
+
+  return { type: null, message: userByEmail };
+};
+
+const getUserById = async (id) => {
+  const user = await Users.findByPk(id);
+
+  if (!user) return { type: 'error', message: 'User not found' };
+  return { type: null, message: user };
+};
+module.exports = { getSellers, getUserByEmail, getUserById };

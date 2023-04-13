@@ -19,7 +19,10 @@ function Login() {
   let stringEmail = email.match(/\S+@\S+\.\S+/i);
 
   useEffect(() => {
-    history.push('/login');
+    const userExists = JSON.parse(localStorage.getItem('user'));
+    if (userExists) {
+      history.push('/customer/products');
+    }
   }, []);
 
   useEffect(() => {

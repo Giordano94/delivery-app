@@ -11,11 +11,10 @@ const findByToken = async ({ data: { name, email, role } }) => {
 const registerUser = async (name, email, password) => {
   const userExists = await Users.findOne({ where: { [Op.or]: [{ email }, { name }] },
   });
-
+  
   if (userExists) {
     return { type: 'error', message: 'User already exists in database' };
   }
-
   const hashedPassword = crypto
     .createHash('md5')
     .update(password)

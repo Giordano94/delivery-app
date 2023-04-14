@@ -1,15 +1,16 @@
 import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import CustomerProducts from './pages/CustomerProducts';
 import ProductProvider from './context/Provider';
 import CustomerCheckout from './pages/CustomerCheckout';
+import CustomerProducts from './pages/CustomerProducts';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 // Fluxo Admin
-import ProviderAuth from './hooks/authoProvider';
 import ProviderAdmin from './hooks/adminProvider';
+import ProviderAuth from './hooks/authoProvider';
+import adminManage from './pages/Admin';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           <ProviderAdmin>
             <Route exact path="/customer/products" component={ CustomerProducts } />
             <Route exact path="/customer/checkout" component={ CustomerCheckout } />
-            <Route exact path="/admin/manage" component={ AdminManage } />
+            <Route exact path="/admin/manage" component={ adminManage } />
           </ProviderAdmin>
         </ProductProvider>
       </ProviderAuth>

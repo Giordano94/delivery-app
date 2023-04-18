@@ -58,7 +58,6 @@ function Register() {
 
       history.push('/customer/products');
     } catch (error) {
-      console.log(error);
       setErrorMessage(true);
     }
   };

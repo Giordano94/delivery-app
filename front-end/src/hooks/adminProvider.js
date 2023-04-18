@@ -4,7 +4,7 @@ import api from '../utils/api';
 import authentication from '../utils/authentication';
 import AdminContext from './adminContext';
 
-export default function adminProvider({ children }) {
+export default function AdminProvider({ children }) {
   const [dataUsers, setDataUsers] = useState([]);
 
   const getUsers = useCallback(async () => {
@@ -26,6 +26,6 @@ export default function adminProvider({ children }) {
   );
 }
 
-adminProvider.propTypes = {
+AdminProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

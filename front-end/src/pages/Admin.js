@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Header from '../components/Header';
 import { postSales } from '../services/apiRequest';
 
 export default function Admin() {
-  /* const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [isRegister, setIsRegister] = useState(false);
+  /* const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
 */
@@ -16,9 +16,7 @@ export default function Admin() {
   } = useForm({ defaultValues: { name: '', email: '', password: '', role: 'customer' } });
 
   const handleLoginAdmin = async (form) => {
-    console.log(form, 'AQUI');
     const { token } = JSON.parse(localStorage.getItem('user'));
-    console.log(token);
     const { name, email, password, role } = form;
     const body = {
       name,
@@ -27,10 +25,19 @@ export default function Admin() {
       role,
       token,
     };
-    console.log(body, 'BODY');
-    await postSales('/admin/user', body);
+    try {
+      await postSales('/admin/user', body);
+      // alert('Cadastro realizado com sucesso');
+    } catch {
+      setIsRegister(true);
+      // if (error.response && error.response.data && error
+      //   .response.data.error === 'duplicated_user') {
+      //   alert('O email informado já está cadastrado. Por favor, tente outro email');
+      // } else {
+      //   alert('Desculpe, ocorreu um erro em seu cadastro, tente novamente mais tarde');
+      // }
+    }
   };
-  console.log(register, 'REGISTER');
   return (
     <div>
       <Header />
@@ -85,6 +92,11 @@ export default function Admin() {
           CADASTRAR
         </button>
       </form>
+      {isRegister && (
+        <h2 data-testid="admin_manage__element-invalid-register">
+          O email ou nome informado já está cadastrado. Por favor, verifique seus dados!
+        </h2>
+      )}
     </div>
   );
 }

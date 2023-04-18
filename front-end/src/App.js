@@ -11,6 +11,8 @@ import Register from './pages/Register';
 import ProviderAdmin from './hooks/adminProvider';
 import ProviderAuth from './hooks/authoProvider';
 import adminManage from './pages/Admin';
+import CustomerOrder from './pages/CustomerOrder';
+import OrderDetails from './pages/OrderDetails';
 
 function App() {
   return (
@@ -31,6 +33,12 @@ function App() {
           </ProviderAdmin>
         </ProductProvider>
       </ProviderAuth>
+      <ProductProvider>
+        <Route exact path="/customer/products" component={ CustomerProducts } />
+        <Route exact path="/customer/checkout" component={ CustomerCheckout } />
+        <Route exact path="/customer/orders/" component={ CustomerOrder } />
+        <Route exact path="/customer/orders/:id" component={ OrderDetails } />
+      </ProductProvider>
     </Switch>
   );
 }

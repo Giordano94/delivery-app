@@ -33,6 +33,10 @@ function Login() {
 
   useEffect(() => {
     redirect();
+    const userExists = JSON.parse(localStorage.getItem('user'));
+    if (userExists) {
+      history.push('/customer/products');
+    }
   }, []);
 
   useEffect(() => {

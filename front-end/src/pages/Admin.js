@@ -1,39 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import Header from '../components/Header';
-import { reqLogin } from '../services/apiRequest';
+import { postSales } from '../services/apiRequest';
 
 export default function Admin() {
-  const [name, setName] = useState('');
+  /* const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
-
+*/
   const {
     register,
     handleSubmit,
     formState: { isValid },
-  } = useForm({ mode: 'onBlur' });
+  } = useForm({ defaultValues: { name: '', email: '', password: '', role: 'customer' } });
 
-  const handleLoginAdmin = async () => {
+  const handleLoginAdmin = async (form) => {
+    console.log(form, 'AQUI');
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    console.log(token);
+    const { name, email, password, role } = form;
     const body = {
       name,
       email,
       password,
       role,
+      token,
     };
-    await reqLogin('/admin/user', body);
+    console.log(body, 'BODY');
+    await postSales('/admin/user', body);
   };
-
+  console.log(register, 'REGISTER');
   return (
     <div>
       <Header />
       <form onSubmit={ handleSubmit(handleLoginAdmin) }>
         <input
-          type="text"
           data-testid="admin_manage__input-name"
-          value={ name }
-          onChange={ (e) => setName(e.target.value) }
           { ...register('name', {
             minLength: {
               value: 12,
@@ -43,10 +46,7 @@ export default function Admin() {
           }) }
         />
         <input
-          type="email"
           data-testid="admin_manage__input-email"
-          value={ email }
-          onChange={ (e) => setEmail(e.target.value) }
           { ...register('email', {
             pattern: {
               value: /^\S+@\S+\.\S+$/,
@@ -56,10 +56,7 @@ export default function Admin() {
           }) }
         />
         <input
-          type="password"
           data-testid="admin_manage__input-password"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
           { ...register('password', {
             minLength: {
               value: 6,
@@ -70,16 +67,15 @@ export default function Admin() {
         />
         <select
           data-testid="admin_manage__select-role"
-          onChange={ (e) => setRole(e.target.value) }
           { ...register('role', {
             required: true,
 
           }) }
           defaultValue="customer"
         >
-          <option value="customer">Customer</option>
-          <option value="seller">Vendedor</option>
-          <option value="adin">Adiministrador</option>
+          <option value="customer">customer</option>
+          <option value="seller">seller</option>
+          <option value="administrator">administrator</option>
         </select>
         <button
           type="submit"

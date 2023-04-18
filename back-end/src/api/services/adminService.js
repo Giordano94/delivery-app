@@ -9,7 +9,7 @@ const createUsers = async (name, email, password, role) => {
     return { type: 'error', message: 'User already exists in database' };
   }
 
-  const hashedPassword = crypto
+ const hashedPassword = crypto
     .createHash('md5')
     .update(password)
     .digest('hex');

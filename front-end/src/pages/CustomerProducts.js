@@ -39,21 +39,18 @@ function CustomerProducts() {
         ))}
       </div>
       <Link to="/customer/checkout">
-        <button
-          disabled={ Number(disabled) === 0 }
-          className="btn-carrinho"
-          type="button"
-          data-testid="customer_products__button-cart"
-        >
-          Ver Carrinho:
-        </button>
-        <div>
-          <p
-            className="display-value"
-            data-testid="customer_products__checkout-bottom-value"
+        <div className="products-btn-carrinho-div">
+          <button
+            className="products-btn-carrinho"
+            disabled={ Number(disabled) === 0 }
+            type="button"
+            data-testid="customer_products__button-cart"
           >
-            {valor}
-          </p>
+            Ver Carrinho:
+            <p data-testid="customer_products__checkout-bottom-value">
+              {valor}
+            </p>
+          </button>
         </div>
       </Link>
     </div>

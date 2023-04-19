@@ -18,7 +18,21 @@ function Login() {
   const limitator = 6;
   let stringEmail = email.match(/\S+@\S+\.\S+/i);
 
+  const redirect = () => {
+    const userExists = JSON.parse(localStorage.getItem('user'));
+    if (userExists !== null) {
+      if (userExists.role === 'customer') {
+        history.push('/customer/products');
+      } else if (userExists.role === 'seller') {
+        history.push('/seller/products');
+      } else if (userExists.role === 'administrator') {
+        history.push('/admin/manage');
+      }
+    }
+  };
+
   useEffect(() => {
+    redirect();
     const userExists = JSON.parse(localStorage.getItem('user'));
     if (userExists) {
       history.push('/customer/products');
@@ -39,7 +53,7 @@ function Login() {
 
       localStorage.setItem('user', JSON.stringify(token));
 
-      history.push('/customer/products');
+      redirect();
     } catch (error) {
       console.log(error);
       setIsValidation(true);

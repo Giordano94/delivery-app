@@ -1,15 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ProductContext from '../context/Context';
+import '../styles/CardCss.css';
 
 function ProductCard({ product }) {
   const { id, name, price, urlImage } = product;
-  const {
-    products,
-    setProducts,
-    productAndQuantity,
-    setProductAndQuantity,
-  } = useContext(ProductContext);
+  const { products, setProducts, productAndQuantity,
+    setProductAndQuantity } = useContext(ProductContext);
   const [quantity, setQuantity] = useState(0);
   const newPrice = price.replace('.', ',');
 
@@ -39,11 +36,11 @@ function ProductCard({ product }) {
     }
   };
   return (
-    <div>
-      <h1 data-testid={ `customer_products__element-card-title-${id}` }>
-        {name}
-      </h1>
-      <h1 data-testid={ `customer_products__element-card-price-${id}` }>
+    <div className="product-card">
+      <h1
+        className="card-price"
+        data-testid={ `customer_products__element-card-price-${id}` }
+      >
         {newPrice}
       </h1>
       <img
@@ -52,29 +49,43 @@ function ProductCard({ product }) {
         src={ urlImage }
         alt={ name }
       />
-      <button
-        data-testid={ `customer_products__button-card-add-item-${id}` }
-        type="button"
-        value="+"
-        onClick={ () => setQuantity(quantity + 1) }
-      >
-        +
-      </button>
-      <input
-        type="number"
-        min="0"
-        value={ quantity }
-        data-testid={ `customer_products__input-card-quantity-${id}` }
-        onChange={ ({ target: { value } }) => setQuantity(Number(value)) }
-      />
-      <button
-        data-testid={ `customer_products__button-card-rm-item-${id}` }
-        type="button"
-        value="-"
-        onClick={ minInput }
-      >
-        -
-      </button>
+      <div className="card-footer">
+
+        <h1
+          className="card-name"
+          data-testid={ `customer_products__element-card-title-${id}` }
+        >
+          {name}
+        </h1>
+        <div className="buttons-card">
+          <button
+            className="card-button-plus"
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+            type="button"
+            value="+"
+            onClick={ () => setQuantity(quantity + 1) }
+          >
+            +
+          </button>
+          <input
+            className="card-input-quantity"
+            type="number"
+            min="0"
+            value={ quantity }
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+            onChange={ ({ target: { value } }) => setQuantity(Number(value)) }
+          />
+          <button
+            className="card-button-minus"
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            type="button"
+            value="-"
+            onClick={ minInput }
+          >
+            -
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -11,29 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.card-img {
-  height: 60px;
-}
-
-.btn-carrinho {
-  top: 0;
-  right: 0;
-  position: fixed;
-  margin-top: 15px;
-  margin-right: 40px;
-}
-
-.display-value {
-  top: 0;
-  right: 0;
-  position: fixed;
-  margin-top: 15px;
-  margin-right: 0px;
-}

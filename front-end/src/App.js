@@ -31,17 +31,13 @@ function App() {
             <Route exact path="/customer/products" component={ CustomerProducts } />
             <Route exact path="/customer/checkout" component={ CustomerCheckout } />
             <Route exact path="/admin/manage" component={ adminManage } />
+            <Route exact path="/customer/orders/" component={ CustomerOrder } />
+            <Route exact path="/seller/orders/" component={ SellerOrders } />
+            <Route exact path="/seller/orders/:id" component={ OrderDetails } />
+            <Route exact path="/customer/orders/:id" component={ OrderDetails } />
           </ProviderAdmin>
         </ProductProvider>
       </ProviderAuth>
-      <ProductProvider>
-        <Route exact path="/customer/products" component={ CustomerProducts } />
-        <Route exact path="/customer/checkout" component={ CustomerCheckout } />
-        <Route exact path="/customer/orders/" component={ CustomerOrder } />
-        <Route exact path="/seller/orders/" component={ SellerOrders } />
-        <Route exact path="/seller/orders/:id" component={ OrderDetails } />
-        <Route exact path="/customer/orders/:id" component={ OrderDetails } />
-      </ProductProvider>
     </Switch>
   );
 }

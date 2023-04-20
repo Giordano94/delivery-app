@@ -28,9 +28,7 @@ export default function FormCheckout() {
   const postData = async () => {
     const users = await reqData('/user/search?q=customer');
     const localUser = JSON.parse(localStorage.getItem('user'));
-    console.log(localUser);
     const u = users.filter((user) => user.email === localUser.email);
-    console.log(u);
 
     const finalData = {
       userId: u[0].id,

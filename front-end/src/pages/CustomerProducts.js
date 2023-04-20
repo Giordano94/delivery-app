@@ -33,15 +33,9 @@ function CustomerProducts() {
   return (
     <div>
       <Header />
-      <div className="products">
-        {productsArray.map((product) => (
-          <ProductCard key={ product.id } product={ product } />
-        ))}
-      </div>
       <Link to="/customer/checkout">
-        <div className="products-btn-carrinho-div">
+        <div>
           <button
-            className="products-btn-carrinho"
             disabled={ Number(disabled) === 0 }
             type="button"
             data-testid="customer_products__button-cart"
@@ -53,6 +47,11 @@ function CustomerProducts() {
           </button>
         </div>
       </Link>
+      <div>
+        {productsArray.map((product) => (
+          <ProductCard key={ product.id } product={ product } />
+        ))}
+      </div>
     </div>
   );
 }

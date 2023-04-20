@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { reqLogin, reqToken } from '../services/apiRequest';
-import '../styles/LoginCss.css';
 
 function Login() {
   const history = useHistory();
@@ -21,7 +20,9 @@ function Login() {
 
   const redirect = () => {
     const userExists = JSON.parse(localStorage.getItem('user'));
+    console.log('user', userExists);
     if (userExists !== null) {
+      console.log('user', userExists.role);
       if (userExists.role === 'customer') {
         history.push('/customer/products');
       } else if (userExists.role === 'seller') {
@@ -31,8 +32,6 @@ function Login() {
       }
     }
   };
-
-
 
   useEffect(() => {
     redirect();
@@ -58,40 +57,38 @@ function Login() {
         history.push('/customer/products');
       } else if (role === 'seller') {
         history.push('/seller/orders');
+      } else if (role === 'administrator') {
+        history.push('/admin/manage');
       }
-
     } catch (error) {
       console.log(error);
       setIsValidation(true);
     }
   };
   return (
-    <div className="login-page">
-      <form className="form-login">
-        <div className="input-email">
+    <div>
+      <form>
+        <label htmlFor="input-login">
           Login
           <input
-            className="input"
             type="email"
             placeholder="Digite seu email:"
             data-testid={ `${commonLogin}${inputEmail}` }
             value={ email }
             onChange={ (e) => setEmail(e.target.value) }
           />
-        </div>
-        <div className="input-senha">
+        </label>
+        <label htmlFor="input-password">
           Senha
           <input
-            className="input"
             type="password"
             placeholder="Digite sua senha:"
             data-testid={ `${commonLogin}${inputPassword}` }
             value={ password }
             onChange={ (e) => setPassword(e.target.value) }
           />
-        </div>
+        </label>
         <button
-          className="button-entrar"
           type="button"
           data-testid={ `${commonLogin}${buttonLogin}` }
           disabled={ !(stringEmail && password.length >= limitator) }
@@ -102,7 +99,6 @@ function Login() {
         <button
           onClick={ () => history.push('/register') }
           type="button"
-          className="button-cadastrar"
           data-testid={ `${commonLogin}${buttonRegister}` }
         >
           Ainda não tenho conta

@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ProductContext from '../context/Context';
-import '../styles/CardCss.css';
 
 function ProductCard({ product }) {
   const { id, name, price, urlImage } = product;
@@ -36,30 +35,27 @@ function ProductCard({ product }) {
     }
   };
   return (
-    <div className="product-card">
+    <div>
       <h1
-        className="card-price"
         data-testid={ `customer_products__element-card-price-${id}` }
       >
         {newPrice}
       </h1>
       <img
-        className="card-img"
+        className="product-card"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
         alt={ name }
       />
-      <div className="card-footer">
+      <div>
 
         <h1
-          className="card-name"
           data-testid={ `customer_products__element-card-title-${id}` }
         >
           {name}
         </h1>
-        <div className="buttons-card">
+        <div>
           <button
-            className="card-button-plus"
             data-testid={ `customer_products__button-card-add-item-${id}` }
             type="button"
             value="+"
@@ -68,7 +64,6 @@ function ProductCard({ product }) {
             +
           </button>
           <input
-            className="card-input-quantity"
             type="number"
             min="0"
             value={ quantity }
@@ -76,7 +71,6 @@ function ProductCard({ product }) {
             onChange={ ({ target: { value } }) => setQuantity(Number(value)) }
           />
           <button
-            className="card-button-minus"
             data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
             value="-"

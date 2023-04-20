@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import '../styles/HeaderCss.css';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 

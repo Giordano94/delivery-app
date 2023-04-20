@@ -25,12 +25,14 @@ function Login() {
       if (userExists.role === 'customer') {
         history.push('/customer/products');
       } else if (userExists.role === 'seller') {
-        history.push('/seller/orders');
+        history.push('/seller/products');
       } else if (userExists.role === 'administrator') {
         history.push('/admin/manage');
       }
     }
   };
+
+
 
   useEffect(() => {
     redirect();
@@ -57,6 +59,7 @@ function Login() {
       } else if (role === 'seller') {
         history.push('/seller/orders');
       }
+
     } catch (error) {
       console.log(error);
       setIsValidation(true);

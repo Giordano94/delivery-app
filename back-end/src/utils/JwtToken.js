@@ -8,6 +8,7 @@ const JWT = {
 
 const JwtToken = (loginValidate) => {
   const secret = fs.readFileSync('jwt.evaluation.key', 'utf-8') || 'secret';
+  console.log(secret, 'Aqui');
   const token = jwt.sign({ data: loginValidate }, secret, JWT);
   return token;
 };

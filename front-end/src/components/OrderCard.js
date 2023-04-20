@@ -9,27 +9,29 @@ function OrderCard({ order }) {
   const { setOrderGlobal } = useContext(ProductContext);
   const history = useHistory();
 
+  const loggedUser = JSON.parse(localStorage.getItem('user'));
+  const { role } = loggedUser;
+
   const handleClick = () => {
     setOrderGlobal(order);
-    history.push(`/customer/orders/${id}`);
+    history.push(`/${role}/orders/${id}`);
   };
-  console.log(id);
 
   return (
     <button type="button" onClick={ handleClick }>
       <div>
-        <h2 data-testid={ `customer_orders__element-order-id-${id}` }>
+        <h2 data-testid={ `${role}_orders__element-order-id-${id}` }>
           Pedido
           {' '}
           {id}
         </h2>
-        <h1 data-testid={ `customer_orders__element-delivery-status-${id}` }>
+        <h1 data-testid={ `${role}_orders__element-delivery-status-${id}` }>
           {status}
         </h1>
-        <h2 data-testid={ `customer_orders__element-order-date-${id}` }>
+        <h2 data-testid={ `${role}_orders__element-order-date-${id}` }>
           {moment(saleDate).format('DD/MM/YYYY')}
         </h2>
-        <h2 data-testid={ `customer_orders__element-card-price-${id}` }>
+        <h2 data-testid={ `${role}_orders__element-card-price-${id}` }>
           {totalPrice?.replace('.', ',')}
         </h2>
       </div>

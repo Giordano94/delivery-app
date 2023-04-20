@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-
 import ProductContext from '../context/Context';
 import Header from '../components/Header';
 import HeaderDetails from '../components/HeaderDetails';

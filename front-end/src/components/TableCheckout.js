@@ -30,7 +30,7 @@ export default function TableCheckout() {
   return (
     <section>
       <h3>Finalizar Pedido</h3>
-      <table>
+      <table className="table-checkout">
         <thead>
           <tr>
             <th>Item</th>
@@ -46,12 +46,8 @@ export default function TableCheckout() {
             <tr key={ index }>
               <td data-testid={ `${dataIndex}${index}` }>{index + 1}</td>
               <td data-testid={ `${testName}${index}` }>{name}</td>
-              <td data-testid={ `${testQuantity}${index}` }>
-                {quantity}
-              </td>
-              <td data-testid={ `${testPrice}${index}` }>
-                {addComma(price)}
-              </td>
+              <td data-testid={ `${testQuantity}${index}` }>{quantity}</td>
+              <td data-testid={ `${testPrice}${index}` }>{addComma(price)}</td>
               <td data-testid={ `${testSubTotal}${index}` }>
                 {addComma((quantity * price).toFixed(2))}
               </td>

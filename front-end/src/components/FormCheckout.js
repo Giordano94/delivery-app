@@ -57,7 +57,7 @@ export default function FormCheckout() {
   };
 
   return (
-    <section>
+    <section className="customer-order">
       <select
         onChange={ (e) => setSelectedSeller(e.target.value) }
         data-testid="customer_checkout__select-seller"
